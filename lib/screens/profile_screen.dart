@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:banking_app/theme_provider.dart';
-import 'package:banking_app/login_screen.dart';
+import 'package:nova_bank/constants/theme_provider.dart';
+import 'package:nova_bank/screens/login_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:banking_app/payment_screen.dart';
+import 'package:nova_bank/screens/payment_screen.dart';
 
 class SendMoneyScreen extends StatefulWidget {
   const SendMoneyScreen({super.key});

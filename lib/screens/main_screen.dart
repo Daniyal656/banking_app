@@ -1,8 +1,8 @@
-import 'package:banking_app/home_screen.dart';
-import 'package:banking_app/report_screen.dart';
-import 'package:banking_app/send_money_screen.dart';
+import 'package:nova_bank/screens/home_screen.dart';
+import 'package:nova_bank/screens/report_screen.dart';
+import 'package:nova_bank/screens/send_money_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:banking_app/profile_screen.dart';
+import 'package:nova_bank/screens/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

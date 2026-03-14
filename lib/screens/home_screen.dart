@@ -1,7 +1,7 @@
-import 'package:banking_app/theme_provider.dart';
+import 'package:nova_bank/constants/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:banking_app/profile_screen.dart';
+import 'package:nova_bank/screens/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final VoidCallback? onSendMoneyTap;

@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:banking_app/onboarding_screen.dart';
+import 'package:nova_bank/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
 class Splash extends StatefulWidget {
@@ -52,16 +52,16 @@ class _SplashState extends State<Splash> {
                   color: Colors.white.withOpacity(0.15),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
-                  Icons.account_balance,
-                  size: 70,
-                  color: Colors.white,
+                child: Image.asset(
+                  'assets/icon/app_icon.png',
+                  height: 120,
+                  width: 120,
                 ),
               ),
             ),
             SizedBox(height: 24),
             Text(
-              "MyBank",
+              "NovaBank",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 36,
