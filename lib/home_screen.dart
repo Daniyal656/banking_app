@@ -43,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                  ),
                     SizedBox(width: 10,),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Hi, Daniyal"),
                         Text("Welcome back!")
@@ -67,6 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Card(
                     elevation: 5,
                     color: Color(0xFF1B3EC8),
+                    margin: EdgeInsets.zero,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -118,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                           child: Icon(Icons.add_circle_outline, color: Colors.blue),
                         ),
-                        SizedBox(width: 6,),
+                        SizedBox(height: 6,),
                         Text("Add Money",style: TextStyle(fontSize: 12))
 
                       ],

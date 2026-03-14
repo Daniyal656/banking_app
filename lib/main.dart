@@ -2,7 +2,6 @@ import 'package:banking_app/login_screen.dart';
 import 'package:banking_app/splash.dart';
 import 'package:banking_app/theme_provider.dart';
 import 'package:flutter/material.dart';
-
 void main(){
   runApp(Routing());
 }

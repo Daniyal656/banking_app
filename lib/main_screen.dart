@@ -1,4 +1,5 @@
 import 'package:banking_app/home_screen.dart';
+import 'package:banking_app/report_screen.dart';
 import 'package:banking_app/send_money_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:banking_app/profile_screen.dart';
@@ -27,12 +28,14 @@ class _MainScreenState extends State<MainScreen> {
         },
       ),
       SendMoneyScreen(),
-      ProfileScreen()
+      ProfileScreen(),
+      ReportScreen()
     ];
     return Scaffold(
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
+        type: BottomNavigationBarType.fixed,
         onTap: (index) {
           setState(() {
             _currentIndex = index;
@@ -50,6 +53,10 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
             label: "Profile",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bar_chart),
+            label: "Reports",
           ),
         ],
       ),

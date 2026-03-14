@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:banking_app/login_screen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:banking_app/onboarding_screen.dart';
 class Splash extends StatefulWidget {
   const Splash({super.key});
 
@@ -17,7 +17,7 @@ class _SplashState extends State<Splash> {
     Timer(
       Duration(seconds: 6),
           () => Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => LoginScreen())
+          context, MaterialPageRoute(builder: (context) => OnboardingScreen())
       ),
     );
   }
