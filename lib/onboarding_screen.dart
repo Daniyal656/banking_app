@@ -10,7 +10,31 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   int _currentPage = 0;
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
+
+  final List<Map<String, dynamic>> _pages = [
+    {
+      'icon': Icons.send,
+      'color': Colors.blue,
+      'bgColor': Color(0xFFE3EEFF),
+      'title': 'Send Money Easily',
+      'desc': 'Transfer money to anyone anywhere in the world instantly',
+    },
+    {
+      'icon': Icons.security,
+      'color': Colors.green,
+      'bgColor': Color(0xFFE3FFE9),
+      'title': 'Secure Payments',
+      'desc': 'Your money is safe with us. We use bank-level security to protect your account',
+    },
+    {
+      'icon': Icons.bar_chart,
+      'color': Colors.orange,
+      'bgColor': Color(0xFFFFF3E0),
+      'title': 'Track Your Spending',
+      'desc': 'Monitor your transactions and manage your budget with ease',
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -18,123 +42,139 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: SafeArea(
         child: Column(
           children: [
+            // Skip button
+            Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: EdgeInsets.all(16),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                    );
+                  },
+                  child: Text(
+                    "Skip",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            // Pages
             Expanded(
-              child: PageView(
+              child: PageView.builder(
                 controller: _pageController,
                 onPageChanged: (index) {
                   setState(() {
                     _currentPage = index;
                   });
                 },
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.send, size: 100, color: Colors.blue),
-                      SizedBox(height: 24),
-                      Text(
-                        "Send Money Easily",
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(height: 16),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 32),
-                        child: Text(
-                          "Transfer money to anyone anywhere in the world instantly",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                itemCount: _pages.length,
+                itemBuilder: (context, index) {
+                  final page = _pages[index];
+                  return Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Icon with background
+                        Container(
+                          padding: EdgeInsets.all(32),
+                          decoration: BoxDecoration(
+                            color: page['bgColor'],
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            page['icon'],
+                            size: 80,
+                            color: page['color'],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  // Secure Payments
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.security, size: 100, color: Colors.green),
-                      SizedBox(height: 24),
-                      Text(
-                        "Secure Payments",
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(height: 16),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 32),
-                        child: Text(
-                          "Your money is safe with us.We use bank-level security to protect your account",
+                        SizedBox(height: 40),
+                        Text(
+                          page['title'],
+                          style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                          ),
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16, color: Colors.grey),
                         ),
-                      ),
-                    ],
-                  ),
-                  // Page 1 — Send Money
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.bar_chart, size: 100, color: Colors.orange),
-                      SizedBox(height: 24),
-                      Text(
-                        "Track your Spendings",
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(height: 16),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 32),
-                        child: Text(
-                          "Monitor your transactions and manage your budget with ease",
+                        SizedBox(height: 16),
+                        Text(
+                          page['desc'],
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey,
+                            height: 1.5,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-
-                ],
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
+
+            // Dot indicators
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
                 3,
-                    (index) => Container(
+                    (index) => AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
                   margin: EdgeInsets.symmetric(horizontal: 4),
                   width: _currentPage == index ? 24 : 8,
                   height: 8,
                   decoration: BoxDecoration(
-                    color: _currentPage == index ? Colors.blue : Colors.grey.shade300,
+                    color: _currentPage == index
+                        ? Colors.blue
+                        : Colors.grey.shade300,
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 24),
+
+            // Buttons
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
-                  minimumSize: Size(double.infinity, 50),
+                  minimumSize: Size(double.infinity, 55),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(16),
                   ),
+                  elevation: 0,
                 ),
                 onPressed: () {
                   if (_currentPage < 2) {
                     _pageController.nextPage(
                       duration: Duration(milliseconds: 300),
-                      curve: Curves.easeIn,
+                      curve: Curves.easeInOut,
                     );
                   } else {
                     Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginScreen())
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
                     );
                   }
                 },
                 child: Text(
-                  _currentPage == 2 ? "Get Started" : "Next",
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  _currentPage == 2 ? "Get Started 🚀" : "Next",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),

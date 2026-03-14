@@ -1,8 +1,7 @@
 import 'dart:async';
-
-import 'package:banking_app/login_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:banking_app/onboarding_screen.dart';
+import 'package:flutter/material.dart';
+
 class Splash extends StatefulWidget {
   const Splash({super.key});
 
@@ -15,9 +14,10 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
     Timer(
-      Duration(seconds: 6),
+      Duration(seconds: 3),  // reduced from 6 to 3 seconds
           () => Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => OnboardingScreen())
+        context,
+        MaterialPageRoute(builder: (context) => OnboardingScreen()),
       ),
     );
   }
@@ -39,16 +39,24 @@ class _SplashState extends State<Splash> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Spacer(),
+            // Outer glow circle
             Container(
-              padding: EdgeInsets.all(24),
+              padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.15),
+                color: Colors.white.withOpacity(0.08),
                 shape: BoxShape.circle,
               ),
-              child: Icon(
-                Icons.account_balance,
-                size: 70,
-                color: Colors.white,
+              child: Container(
+                padding: EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.15),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.account_balance,
+                  size: 70,
+                  color: Colors.white,
+                ),
               ),
             ),
             SizedBox(height: 24),
@@ -70,12 +78,33 @@ class _SplashState extends State<Splash> {
                 letterSpacing: 1.5,
               ),
             ),
+            SizedBox(height: 8),
+            // Version text
+            Text(
+              "v1.0.0",
+              style: TextStyle(
+                color: Colors.white38,
+                fontSize: 12,
+              ),
+            ),
             Spacer(),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40),
-              child: LinearProgressIndicator(
-                backgroundColor: Colors.white24,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: LinearProgressIndicator(
+                  backgroundColor: Colors.white24,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                  minHeight: 4,  // thicker progress bar
+                ),
+              ),
+            ),
+            SizedBox(height: 16),
+            Text(
+              "Loading...",
+              style: TextStyle(
+                color: Colors.white54,
+                fontSize: 12,
               ),
             ),
             SizedBox(height: 40),
